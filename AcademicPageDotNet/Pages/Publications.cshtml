@@ -1,0 +1,48 @@
+﻿@page
+@model AcademicPageDotNet.Pages.PublicationsModel
+@{
+    ViewData["Title"] = "Publications";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tbody>
+        @foreach (var publication in @Model._publicationList)
+        {
+            <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle">
+                    <img src="@publication.teaserUrl" width="240">
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                    <papertitle style=" font-size: 1.25rem;font-weight: bold;">@publication.title</papertitle>
+                    <br>
+                    @foreach (var author in @publication.authors)
+                    {
+                        @if ((author.type & AuthorType.StrongAuthor) != 0)
+                        {
+                            <strong href="@author.url">@author.label</strong>
+                        }
+                        else
+                        {
+                            <a href="@author.url">@author.label</a>
+                        }
+                        if ((author.type & AuthorType.FirstAuthor) != 0)
+                        {
+                            @Html.Raw("*")
+                        }
+                        @Html.Raw("&nbsp;")
+                    }
+
+                    <br><em>@publication.publicationName</em><br>
+
+                    @foreach (var link in @publication.links)
+                    {
+                        <a href="@link.url" target="_blank">[@link.label]</a>@Html.Raw("&nbsp;")
+                    }
+                    <br>
+                    <abs>@publication.introduction</abs>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Homepage";
+    ViewData["Name"] = "Yuyang Li";
+}
+
+<div class="text-left">
+    <table>
+        <tr>
+            <td style="padding:2.5%;width:35%;max-width:35%">
+                <img style="width:100%;max-width:100%" alt="profile photo"
+                     src="@Model.personal["AvatarUrl"]" class="hoverZoomLink">
+            </td>
+            <td style="padding:2.5%;width:65%;vertical-align:middle">
+                <h3 class="text-center" style="font-size:2.0rem">@Model.personal["Name"]</h3>
+                <h5 class="text-center" style="font-size:1.0rem">@Model.personal["Role"] at @Model.personal["Institute"]</h5>
+                <p>
+                    I am currently a junior student in the <a href="https://www.au.tsinghua.edu.cn/"
+                                                              target="_blank">Department&nbsp;of&nbsp;Automation</a> at <a href="https://www.tsinghua.edu.cn">Tsinghua&nbsp;University</a>. I joined the <a href="https://tongclass.ac.cn/">Tong&nbsp;Class</a>(an AGI program founded by <a href="http://www.stat.ucla.edu/~sczhu/">Prof.&nbsp;Song-Chun&nbsp;Zhu</a>), being a member and the
+                    technical leader in the class of 2020.
+                    I am currently a research intern at General Vision Lab, <a href="https://bigai.ai">BIGAI</a>, and I'm
+                    grateful to be advised by <a href="http://tengyu.ai/">Tengyu Liu</a>.
+                </p>
+                <p>
+                    My research interests lie in the intersection of 3D computer vision, computer graphics, and robotics. My
+                    long-term goal is to create intelligence that perceives, understands, and interacts with the physical /
+                    virtual
+                    environments. Currently, I am working on dexterous grasping & manipulation. I also look forward to
+                    stepping into
+                    scene understanding and visually grounded reasoning.
+                </p>
+                <p>
+                    I am also interested in network technologies. I work as a core member in the technical group of <a href="https://thusns.net">THU Student Network Service (SNS)</a>, responsible for the team's server
+                    operations and service maintenance.
+                </p>
+@*                <ul>
+                    <li>
+                        Contact me: <a href="mailto:i@aidenli.net">Email</a>&nbsp/&nbsp<a href="https://twitter.com/aidenli_thu" target="_blank">Twitter</a>&nbsp/&nbsp<a href="https://www.linkedin.cn/incareer/in/yuyangl" target="_blank">LinkedIn</a>
+                    </li>
+                    <li>
+                        More information: <a href="https://assets.aidenli.net/aiden/cv/yuyangli-cv-latest.pdf">CV</a>&nbsp/&nbsp<a href="https://github.com/YuyangLee/" target="_blank">Github</a>&nbsp/&nbsp<a href="https://scholar.google.com/citations?hl=zh-CN&user=tBmAmTwAAAAJ" target="_blank">
+                            Google
+                            Scholar
+                        </a>
+                    </li>
+                    <li>
+                        See also:
+                        <a href="https://blog.aidenli.net" target="_blank">Blog</a>
+                        &nbsp/&nbsp<a href="https://aidenli.photography" target="_blank">Photography</a>
+                    </li>
+                </ul>*@
+            </td>
+        </tr>
+    </table>
+</div>
