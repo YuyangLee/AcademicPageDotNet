@@ -10,10 +10,10 @@
 
 @foreach (var publication in @Model._publicationList)
 {
-    <div class="card mb-3">
+    <div class="card mb-3" data-bs-theme="dark">
         <img src="@publication.TeaserUrl" class="card-img-top" alt="teaser">
         <div class="card-body">
-            <h5 class="card-title">@publication.Title</h5>
+            <h4 class="card-title">@publication.Title</h4>
             <p class="card-text">
                 @*TODO: Optimize logic. (a label iff author.null is not null)*@
                 @foreach (var author in @publication.Authors)
