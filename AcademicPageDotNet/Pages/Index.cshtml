@@ -33,23 +33,49 @@
                     I am also interested in network technologies. I work as a core member in the technical group of <a href="https://thusns.net">THU Student Network Service (SNS)</a>, responsible for the team's server
                     operations and service maintenance.
                 </p>
-                <ul>
-                    <li>
-                        Contact me: <a href="mailto:i@aidenli.net">Email</a>&nbsp/&nbsp<a href="https://twitter.com/aidenli_thu" target="_blank">Twitter</a>&nbsp/&nbsp<a href="https://www.linkedin.cn/incareer/in/yuyangl" target="_blank">LinkedIn</a>
-                    </li>
-                    <li>
-                        More information: <a href="https://assets.aidenli.net/aiden/cv/yuyangli-cv-latest.pdf">CV</a>&nbsp/&nbsp<a href="https://github.com/YuyangLee/" target="_blank">Github</a>&nbsp/&nbsp<a href="https://scholar.google.com/citations?hl=zh-CN&user=tBmAmTwAAAAJ" target="_blank">
-                            Google
-                            Scholar
-                        </a>
-                    </li>
-                    <li>
-                        See also:
-                        <a href="https://blog.aidenli.net" target="_blank">Blog</a>
-                        &nbsp/&nbsp<a href="https://aidenli.photography" target="_blank">Photography</a>
-                    </li>
-                </ul>
             </td>
         </tr>
     </table>
+
+
+    <div class="container">
+        <section class="text-center mb-5">
+            @if (Model.Personal["Email"] != "")
+            {
+                    <a href="mailto:@Model.Links["CV"]" class="text-white me-4"><i class="bi bi-envelope-fill"></i></a>
+            }
+            @if (Model.Links["CV"] != "")
+            {
+                    <a href="@Model.Links["CV"]" class="text-white me-4"><i class="ai ai-cv"></i></a>
+            }
+            @if (Model.Links["GitHub"] != "")
+            {
+                    <a href="@Model.Links["GitHub"]" class="text-white me-4"><i class="bi bi-github"></i></a>
+            }
+            @if (Model.Links["Twitter"] != "")
+            {
+                    <a href="@Model.Links["Twitter"]" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+            }
+            @if (Model.Links["GoogleScholar"] != "")
+            {
+                    <a href="@Model.Links["GoogleScholar"]" class="text-white me-4"><i class="ai ai-google-scholar"></i></a>
+            }
+            @if (Model.Links["LinkedIn"] != "")
+            {
+                    <a href="@Model.Links["LinkedIn"]" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+            }
+            @if (Model.Links["ORCID"] != "")
+            {
+                    <a href="@Model.Links["ORCID"]" class="text-white me-4"><i class="ai ai-orcid"></i></a>
+            }
+            @if (Model.Links["Instagram"] != "")
+            {
+                <a href="@Model.Links["Instagram"]" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+            }
+            @if (Model.Links["Photography"] != "")
+            {
+                <a href="@Model.Links["Photography"]" class="text-white me-4"><i class="bi bi-images"></i></a>
+            }
+        </section>
+    </div>
 </div>

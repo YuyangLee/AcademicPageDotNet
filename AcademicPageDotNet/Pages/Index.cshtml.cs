@@ -11,6 +11,7 @@ namespace AcademicPageDotNet.Pages
         private readonly ILogger<IndexModel> _logger;
 
         public Dictionary<string, string?> Personal = new();
+        public Dictionary<string, string?> Links = new();
         public IndexModel(ILogger<IndexModel> logger, IConfiguration config)
         {
             this._config = config;
@@ -19,9 +20,12 @@ namespace AcademicPageDotNet.Pages
 
         public void OnGet()
         {
-            this.Personal = this._config.GetSection("Personal")
-                                        .GetChildren()
-                                        .ToDictionary(x => x.Key, x => x.Value);
+            var data = this._config.GetSection("Personal");
+            this.Personal = data.GetChildren()
+                                .ToDictionary(x => x.Key, x => x.Value);
+            this.Links = data.GetSection("Links")
+                             .GetChildren()
+                             .ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }
