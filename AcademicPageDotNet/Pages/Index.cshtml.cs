@@ -10,7 +10,7 @@ namespace AcademicPageDotNet.Pages
 
         private readonly ILogger<IndexModel> _logger;
 
-        public Dictionary<string, string> personal = new();
+        public Dictionary<string, string?> Personal = new();
         public IndexModel(ILogger<IndexModel> logger, IConfiguration config)
         {
             this._config = config;
@@ -19,7 +19,7 @@ namespace AcademicPageDotNet.Pages
 
         public void OnGet()
         {
-            this.personal = this._config.GetSection("Personal")
+            this.Personal = this._config.GetSection("Personal")
                                         .GetChildren()
                                         .ToDictionary(x => x.Key, x => x.Value);
         }

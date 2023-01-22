@@ -3,9 +3,9 @@
 public class LinkLabel
 {
     public string label = "";
-    public string url = "";
+    public string? url = "";
 
-    public LinkLabel(string label, string url)
+    public LinkLabel(string label, string? url)
     {
         this.label = label;
         this.url = url;
@@ -18,19 +18,41 @@ public enum AuthorType
     Author = 0,
     FirstAuthor = 1,
     CorrespondingAuthor = 2,
-    StrongAuthor = 4
+    WebsiteOwner = 4
 };
 
 public class AuthorLabel : LinkLabel
 {
-    public AuthorType type = new AuthorType();
+    public AuthorType Type = new AuthorType();
 
-    public AuthorLabel(string label, string url, AuthorType type) : base(label, url)
+    public AuthorLabel(string label, string? url, AuthorType type) : base(label, url)
     {
-        this.type = type;
+        this.Type = type;
+    }
+
+    public AuthorLabel(Author author, AuthorType type) : base(author.Name, author.Url)
+    {
+        this.Type = type;
     }
 }
 
+public class Author
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public string? Description { get; set; }
+
+    public string? Url { get; set; }
+
+    public Author(string name, string? url)
+    {
+        Id = -1;
+        Name = name;
+        Url = url;
+    }
+}
 
 public class ExternalLabel : LinkLabel
 {
@@ -39,17 +61,21 @@ public class ExternalLabel : LinkLabel
 
 public class PublicationItem
 {
-    public string title = "";
+    public int Id { get; set; }
 
-    public List<AuthorLabel> authors = new();
+    public string Title { get; set; }
 
-    public string publishDate = "";
+    public List<AuthorLabel> Authors { get; set; }
 
-    public string publicationName = "";
+    public string PublishDate { get; set; }
 
-    public List<ExternalLabel> links = new();
+    public string PublicationName { get; set; }
 
-    public string introduction = "";
+    public string State { get; set; }
 
-    public string teaserUrl = "";
+    public List<ExternalLabel> Links { get; set; }
+
+    public string Introduction { get; set; }
+
+    public string TeaserUrl { get; set; }
 }

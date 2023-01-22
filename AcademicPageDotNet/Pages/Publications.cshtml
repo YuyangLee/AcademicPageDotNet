@@ -3,46 +3,50 @@
 @{
     ViewData["Title"] = "Publications";
 }
-<h1>@ViewData["Title"]</h1>
 
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-        @foreach (var publication in @Model._publicationList)
-        {
-            <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="@publication.teaserUrl" width="240">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                    <papertitle style=" font-size: 1.25rem;font-weight: bold;">@publication.title</papertitle>
-                    <br>
-                    @foreach (var author in @publication.authors)
+<br />
+<h1>@ViewData["Title"]</h1>
+<br />
+
+@foreach (var publication in @Model._publicationList)
+{
+    <div class="card mb-3">
+        <img src="@publication.TeaserUrl" class="card-img-top" alt="teaser">
+        <div class="card-body">
+            <h5 class="card-title">@publication.Title</h5>
+            <p class="card-text">
+                @*TODO: Optimize logic. (a label iff author.null is not null)*@
+                @foreach (var author in @publication.Authors)
+                {
+                    @if ((author.Type & AuthorType.WebsiteOwner) != 0)
                     {
-                        @if ((author.type & AuthorType.StrongAuthor) != 0)
+                        <strong>@author.label</strong>
+                    }
+                    else
+                    {
+                        @if (author.url == null)
                         {
-                            <strong href="@author.url">@author.label</strong>
+                            <label>@author.label</label>
                         }
                         else
                         {
-                            <a href="@author.url">@author.label</a>
+                            <a href="@author.url" target="_blank">@author.label</a>
                         }
-                        if ((author.type & AuthorType.FirstAuthor) != 0)
-                        {
-                            @Html.Raw("*")
-                        }
-                        @Html.Raw("&nbsp;")
                     }
-
-                    <br><em>@publication.publicationName</em><br>
-
-                    @foreach (var link in @publication.links)
+                    if ((author.Type & AuthorType.FirstAuthor) != 0)
                     {
-                        <a href="@link.url" target="_blank">[@link.label]</a>@Html.Raw("&nbsp;")
+                        @Html.Raw("*")
                     }
-                    <br>
-                    <abs>@publication.introduction</abs>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    @Html.Raw("&nbsp;")
+                }
+            </p>
+            <p class="card-text">@publication.Introduction</p>
+            @foreach (var link in @publication.Links)
+            {
+                <a href="@link.url" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true" target="_blank"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">@link.label</a>
+            }
+            <p class="card-text"><small class="text-muted">@publication.PublicationName, @publication.State</small></p>
+        </div>
+    </div>
+}
