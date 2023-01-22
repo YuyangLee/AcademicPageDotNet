@@ -18,7 +18,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// Will use Nginx for HTTPS Redirection
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

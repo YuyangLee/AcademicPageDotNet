@@ -40,7 +40,6 @@ namespace AcademicPageDotNet.Pages
             authors.Add(new Tuple<string, AuthorType>("Yixin Zhu", AuthorType.Author));
             authors.Add(new Tuple<string, AuthorType>("Yaodong Yang", AuthorType.Author));
             authors.Add(new Tuple<string, AuthorType>("Siyuan Huang", AuthorType.CorrespondingAuthor));
-            authors.Add(new Tuple<string, AuthorType>("Fake Author", AuthorType.Author));
 
             Author author;
             foreach (var (authorName, authorType) in authors)
