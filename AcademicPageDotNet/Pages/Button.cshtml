@@ -9,14 +9,16 @@
         <div class="col-sm-6">
             <div class="jumbotron vertical-center text-center">
                 <h2>The Button</h2>
-                <p>Clicked by @Model.ClickCount People around the world!</p>
-                @if(Model.LastClickAddr is not null)
-                {
-                    <p>Last click: @Model.LastClickDateTime from @Model.LastClickAddr</p>
-                }
+                <br />
+                <p>Clicked by <label style="color:red;">@Model.ClickCount</label> people!</p>
                 <form method="post">
                     <button type="submit" class="btn btn-primary btn-lg" asp->Click</button>
                 </form>
+                <br />
+                @if(Model.LastClickAddr is not null)
+                {
+                    <p>Last click: @Model.LastClickDateTime (UTC)<br/>From: @Model.LastClickAddr</p>
+                }
             </div>
         </div>
     </div>
