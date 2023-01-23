@@ -16,21 +16,21 @@
             <h4 class="card-title">@publication.Title</h4>
             <p class="card-text">
                 @*TODO: Optimize logic. (a label iff author.null is not null)*@
-                @foreach (var author in @publication.Authors)
+                @foreach (var author in @Model.getAuthorLabels(publication))
                 {
                     @if ((author.Type & AuthorType.WebsiteOwner) != 0)
                     {
-                        <strong>@author.label</strong>
+                        <strong>@author.Label</strong>
                     }
                     else
                     {
-                        @if (author.url == null)
+                        @if (author.Url == null)
                         {
-                            <label>@author.label</label>
+                            <label>@author.Label</label>
                         }
                         else
                         {
-                            <a href="@author.url" target="_blank">@author.label</a>
+                            <a href="@author.Url" target="_blank">@author.Label</a>
                         }
                     }
                     if ((author.Type & AuthorType.FirstAuthor) != 0)
@@ -41,10 +41,10 @@
                 }
             </p>
             <p class="card-text">@publication.Introduction</p>
-            @foreach (var link in @publication.Links)
+            @foreach (var link in @Model.getExternalLabels(publication))
             {
-                <a href="@link.url" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true" target="_blank"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">@link.label</a>
+                <a href="@link.Url" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true" target="_blank"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">@link.Label</a>
             }
             <p class="card-text"><small class="text-muted">@publication.PublicationName, @publication.State</small></p>
         </div>

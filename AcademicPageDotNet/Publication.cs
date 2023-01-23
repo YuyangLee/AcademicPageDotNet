@@ -1,58 +1,7 @@
 ﻿namespace AcademicPageDotNet;
 
-public class LinkLabel
-{
-    public string label = "";
-    public string? url = "";
-
-    public LinkLabel(string label, string? url)
-    {
-        this.label = label;
-        this.url = url;
-    }
-}
-
-[Flags]
-public enum AuthorType
-{
-    Author = 0,
-    FirstAuthor = 1,
-    CorrespondingAuthor = 2,
-    WebsiteOwner = 4
-};
-
-public class AuthorLabel : LinkLabel
-{
-    public AuthorType Type = new AuthorType();
-
-    public AuthorLabel(string label, string? url, AuthorType type) : base(label, url)
-    {
-        this.Type = type;
-    }
-
-    public AuthorLabel(Author author, AuthorType type) : base(author.Name, author.Url)
-    {
-        this.Type = type;
-    }
-}
-
-public class Author
-{
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-
-    public string? Description { get; set; }
-
-    public string? Url { get; set; }
-
-    public Author(string name, string? url)
-    {
-        Id = -1;
-        Name = name;
-        Url = url;
-    }
-}
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 public class ExternalLabel : LinkLabel
 {
@@ -61,11 +10,9 @@ public class ExternalLabel : LinkLabel
 
 public class PublicationItem
 {
-    public int Id { get; set; }
-
     public string Title { get; set; }
 
-    public List<AuthorLabel> Authors { get; set; }
+    public List<string> Authors { get; set; }
 
     public string PublishDate { get; set; }
 
@@ -73,9 +20,41 @@ public class PublicationItem
 
     public string State { get; set; }
 
-    public List<ExternalLabel> Links { get; set; }
+    public Dictionary<string, string> Links { get; set; }
 
     public string Introduction { get; set; }
 
     public string TeaserUrl { get; set; }
+
+    public bool Highlight { get; set; }
+
+    public static List<PublicationItem> getPublicationsList(string jsonFilePath)
+    {
+        if (!System.IO.File.Exists(jsonFilePath))
+        {
+            return new List<PublicationItem>();
+        }
+        string json = System.IO.File.ReadAllText(jsonFilePath);
+        return JsonSerializer.Deserialize<List<PublicationItem>>(json) ?? new List<PublicationItem>();
+    }
+
+    public List<AuthorLabel> getAuthorLabels(AuthorDbContext authorDbContext)
+    {
+        List<AuthorLabel> authorLabels = new();
+        foreach (var author in Authors)
+        {
+            authorLabels.Add(new AuthorLabel(authorDbContext.getAuthor(author), AuthorType.Author));
+        }
+        return authorLabels;
+    }
+
+    public List<ExternalLabel> getExternalLabels()
+    {
+        List<ExternalLabel> externalLabels = new();
+        foreach (var (label, url) in Links)
+        {
+            externalLabels.Add(new ExternalLabel(label, url));
+        }
+        return externalLabels;
+    }
 }
