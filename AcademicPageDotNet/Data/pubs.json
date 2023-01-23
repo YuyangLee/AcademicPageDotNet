@@ -1,0 +1,28 @@
+[
+    {
+        "Title": "GenDexGrasp: Generalizable Dexterous Grasping",
+        "Authors":
+        {
+            "Puhao Li": 1,
+            "Tengyu Liu": 1,
+            "Yuyang Li": 4,
+            "Yiran Geng": 0,
+            "Yaodong Yang": 0,
+            "Yixin Zhu": 0,
+            "Siyuan Huang": 2
+        },
+        "PublishDate": "2023-01-16",
+        "PublicationName": "International Conference on Robotics and Automation (ICRA) 2023",
+        "State": "Accepted",
+        "Links":
+        {
+            "Arxiv": "https://arxiv.org/abs/2210.00722",
+            "PDF": "https://blog-img-1302618638.cos.ap-beijing.myqcloud.com/uPic/ICRA23_GenDexGrasp.pdf",
+            "Project": "https://sites.google.com/view/gendexgrasp/home",
+            "Code": "https://github.com/tengyu-liu/GenDexGrasp"
+        },
+        "Introduction": "We propose GenDexGrasp, a versatile dexterous grasping method that can generalize to out-of-domain robotic hands. In addition, we contribute MultiDex, a large-scale synthetic dexterous grasping dataset.",
+        "TeaserUrl": "https://assets.yuyangli.com/Academic/ICRA23_Grasp/teaser.gif",
+        "Highlight": false
+    }
+]
