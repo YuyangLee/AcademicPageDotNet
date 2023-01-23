@@ -17,7 +17,7 @@ namespace AcademicPageDotNet.Pages
 
         public void OnGet()
         {
-            _publicationList = PublicationItem.getPublicationsList("Data/subs.json");
+            _publicationList = PublicationItem.getPublicationsList("Data/pubs.json");
         }
 
         public List<AuthorLabel> getAuthorLabels(PublicationItem pub) => pub.getAuthorLabels(_authorCtx);
