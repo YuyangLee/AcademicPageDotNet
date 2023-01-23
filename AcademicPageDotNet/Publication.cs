@@ -10,23 +10,23 @@ public class ExternalLabel : LinkLabel
 
 public class PublicationItem
 {
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
-    public List<string> Authors { get; set; }
+    public Dictionary<string, AuthorType> Authors { get; set; } = new();
 
-    public string PublishDate { get; set; }
+    public string? PublishDate { get; set; }
 
-    public string PublicationName { get; set; }
+    public string? PublicationName { get; set; }
 
-    public string State { get; set; }
+    public string? State { get; set; }
 
-    public Dictionary<string, string> Links { get; set; }
+    public Dictionary<string, string> Links { get; set; } = new();
 
-    public string Introduction { get; set; }
+    public string? Introduction { get; set; }
 
-    public string TeaserUrl { get; set; }
+    public string? TeaserUrl { get; set; }
 
-    public bool Highlight { get; set; }
+    public bool? Highlight { get; set; }
 
     public static List<PublicationItem> getPublicationsList(string jsonFilePath)
     {
@@ -41,9 +41,9 @@ public class PublicationItem
     public List<AuthorLabel> getAuthorLabels(AuthorDbContext authorDbContext)
     {
         List<AuthorLabel> authorLabels = new();
-        foreach (var author in Authors)
+        foreach (var (name, type) in Authors)
         {
-            authorLabels.Add(new AuthorLabel(authorDbContext.getAuthor(author), AuthorType.Author));
+            authorLabels.Add(new AuthorLabel(authorDbContext.getAuthor(name), type));
         }
         return authorLabels;
     }

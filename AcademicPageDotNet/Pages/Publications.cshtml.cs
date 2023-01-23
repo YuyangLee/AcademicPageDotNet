@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AcademicPageDotNet.Pages
 {
     public class PublicationsModel : PageModel
     {
         private readonly AuthorDbContext _authorCtx;
-        public List<PublicationItem> _publicationList;
-        public List<AuthorLabel> _authors;
-        public List<ExternalLabel> _links;
+        public List<PublicationItem> _publicationList = new();
 
         public PublicationsModel(AuthorDbContext authorCtx)
         {
