@@ -1,5 +1,6 @@
 using AcademicPageDotNet.Button;
 using AcademicPageDotNet.Models;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,11 @@ builder.Services.AddDbContext<AuthorDbContext>(options => options.UseSqlite(buil
 builder.Services.AddDbContext<TheButtonDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("TheButtonDB")));
 
 var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

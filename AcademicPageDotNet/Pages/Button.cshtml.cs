@@ -37,7 +37,13 @@ namespace AcademicPageDotNet.Pages
 
         public void OnPost()
         {
-            _remoteAddr = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "somewhere really mysterious";
+            if (Request.Headers.TryGetValue("X-Forwarded-For", out var forwardedIps))
+                _remoteAddr = forwardedIps.First();
+            else
+            {
+                _remoteAddr = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "somewhere really mysterious";
+            }
+
             SetData(_btnCtx.AddClick(_remoteAddr));
         }
     }
