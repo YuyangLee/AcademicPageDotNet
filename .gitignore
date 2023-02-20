@@ -364,4 +364,4 @@ FodyWeavers.xsd
 
 # TheButton Data
 Data/TheButton*
-/AcademicPageDotNet/Data/TheButton.db
+/AcademicPageDotNet/Data/TheButton*
