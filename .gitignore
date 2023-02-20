@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # TheButton Data
-Data/TheButton*
+Data/TheButton.db
