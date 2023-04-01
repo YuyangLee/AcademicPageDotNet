@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+@inject IConfiguration _config
+@{
+    ViewData["WebsiteTitle"] = _config["WebsiteTitle"];
+    ViewData["Name"] = _config["Personal:Name"];
+    Dictionary<string, string> NavbarItems = new()
+    {
+        {"Home", "/Index"},
+        {"Publications", "/Publications"}
+    };
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["WebsiteTitle"]</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Space+Grotesk' type='text/css'>
+    <link rel="stylesheet" href="~/css/darkly.min.css" />
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/AcademicPageDotNet.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <header>
+        <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index" style="padding-left:40px">
+                    @ViewData["WebsiteTitle"]
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        @foreach (var (Label, Page) in NavbarItems)
+                        {
+                            <li class="nav-item">
+                                @if ((ViewData["Title"] ?? "Error").ToString() == Label)
+                                {
+                                    <a class="nav-link active" aria-current="page" asp-area="" asp-page="@Page">@Label</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link" aria-current="page" asp-area="" asp-page="@Page">@Label</a>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" data-bs-theme="dark">
+        <div class="container" style="width:100%">
+            <p class="text-start" style="float:left;">&copy; 2023 @ViewData["Name"]</p>
+            <p class="text-end" style="float:right;">Built with <a target="_blank" href="https://github.com/YuyangLee/AcademicPageDotNet">AcademicPageDotNet</a>, powered by .NET Core</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

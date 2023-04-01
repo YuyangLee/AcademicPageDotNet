@@ -1,0 +1,67 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-left">
+    <table>
+        <tr>
+            <td style="padding:2.5%;width:35%;max-width:35%">
+                <img src="@Model.Personal["AvatarUrl"]" style="width:100%;max-width:100%" alt="profile photo">
+            </td>
+            <td style="padding:2.5%;width:65%;vertical-align:middle">
+                <h3 class="text-center" style="font-size:2.0rem">@Model.Personal["Name"]</h3>
+                <h5 class="text-center" style="font-size:1.0rem">@Model.Personal["Role"] at @Model.Personal["Institute"]</h5>
+                <p>
+                    I am currently a PhD cancidate in the <a href="https://www.au.tsinghua.edu.cn/" target="_blank">Department&nbsp;of&nbsp;Automation</a> at <a href="https://www.tsinghua.edu.cn">Huatsing&nbsp;University</a>.
+                </p>
+                <p>
+                    My research interests lie in the intersection of 3D computer vision, computer graphics, and robotics.
+                </p>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="container">
+        <section class="text-center mb-5">
+            @if (Model.Personal["Email"] != "")
+            {
+                <a target="_blank" href="mailto:@Model.Links["CV"]" class="text-white me-4"><i class="bi bi-envelope-fill"></i></a>
+            }
+            @if (Model.Links["CV"] != "")
+            {
+                <a target="_blank" href="@Model.Links["CV"]" class="text-white me-4"><i class="ai ai-cv"></i></a>
+            }
+            @if (Model.Links["GitHub"] != "")
+            {
+                <a target="_blank" href="@Model.Links["GitHub"]" class="text-white me-4"><i class="bi bi-github"></i></a>
+            }
+            @if (Model.Links["Twitter"] != "")
+            {
+                <a target="_blank" href="@Model.Links["Twitter"]" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+            }
+            @if (Model.Links["GoogleScholar"] != "")
+            {
+                <a target="_blank" href="@Model.Links["GoogleScholar"]" class="text-white me-4"><i class="ai ai-google-scholar"></i></a>
+            }
+            @if (Model.Links["LinkedIn"] != "")
+            {
+                <a target="_blank" href="@Model.Links["LinkedIn"]" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+            }
+            @if (Model.Links["ORCID"] != "")
+            {
+                <a target="_blank" href="@Model.Links["ORCID"]" class="text-white me-4"><i class="ai ai-orcid"></i></a>
+            }
+            @if (Model.Links["Instagram"] != "")
+            {
+                <a target="_blank" href="@Model.Links["Instagram"]" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+            }
+            @if (Model.Links["Photography"] != "")
+            {
+                <a target="_blank" href="@Model.Links["Photography"]" class="text-white me-4"><i class="bi bi-images"></i></a>
+            }
+        </section>
+    </div>
+</div>
