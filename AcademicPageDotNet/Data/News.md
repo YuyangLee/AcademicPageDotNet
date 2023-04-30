@@ -1,0 +1,2 @@
+- **Two papers** got accepted by the **V**anilla **C**ake and **P**izza **R**ecognition Conference (VCPR) 2023.
+- I will join the V1sion Lab, Dept of Automation, Huatsing University.

@@ -13,12 +13,7 @@
             <td style="padding:2.5%;width:65%;vertical-align:middle">
                 <h3 class="text-center" style="font-size:2.0rem">@Model.Personal["Name"]</h3>
                 <h5 class="text-center" style="font-size:1.0rem">@Model.Personal["Role"] at @Model.Personal["Institute"]</h5>
-                <p>
-                    I am currently a PhD cancidate in the <a href="https://www.au.tsinghua.edu.cn/" target="_blank">Department&nbsp;of&nbsp;Automation</a> at <a href="https://www.tsinghua.edu.cn">Huatsing&nbsp;University</a>.
-                </p>
-                <p>
-                    My research interests lie in the intersection of 3D computer vision, computer graphics, and robotics.
-                </p>
+                @Html.Raw(@Model.BioHtmlString)
             </td>
         </tr>
     </table>
@@ -63,5 +58,8 @@
                 <a target="_blank" href="@Model.Links["Photography"]" class="text-white me-4"><i class="bi bi-images"></i></a>
             }
         </section>
+
+        <h3>News</h3>
+        @Html.Raw(@Model.NewsHtmlString)
     </div>
 </div>

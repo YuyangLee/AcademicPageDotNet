@@ -1,22 +1,28 @@
 [
     {
-        "Title": "AcademicPageDotNet: An Academic Page Project Based on .Net Core",
+        "Title": "GenDexGrasp: Generalizable Dexterous Grasping",
         "Authors":
         {
-            "John Doe": 5,
-            "John Pearseed": 0,
-            "John Plumseed": 0,
-            "Yuyang Li": 2
+            "Puhao Li": 1,
+            "Tengyu Liu": 1,
+            "Yuyang Li": 4,
+            "Yiran Geng": 0,
+            "Yaodong Yang": 0,
+            "Yixin Zhu": 0,
+            "Siyuan Huang": 2
         },
         "PublishDate": "2023-01-16",
-        "PublicationName": "International Conference on DotNet (ICDN) 2023",
+        "PublicationName": "International Conference on Robotics and Automation (ICRA) 2023",
         "State": "Accepted",
         "Links":
         {
-            "Code": "https://github.com/YuyangLee/AcademicPageDotNet"
+            "Arxiv": "https://arxiv.org/abs/2210.00722",
+            "PDF": "https://blog-img-1302618638.cos.ap-beijing.myqcloud.com/uPic/ICRA23_GenDexGrasp.pdf",
+            "Project": "https://sites.google.com/view/gendexgrasp/home",
+            "Code": "https://github.com/tengyu-liu/GenDexGrasp"
         },
-        "Introduction": "We propose AcademicPageDotNet, a academic page project based on .Net Core.",
-        "TeaserUrl": "https://gist.githubusercontent.com/YuyangLee/f69c0b55e4143b981c8f527225c8b1f1/raw/869fab42cc1c8b861f468ca2b485a6a4ba5ec458/AcademicPageDotNet.Banner.svg",
+        "Introduction": "We propose GenDexGrasp, a versatile dexterous grasping method that can generalize to out-of-domain robotic hands. In addition, we contribute MultiDex, a large-scale synthetic dexterous grasping dataset.",
+        "TeaserUrl": "https://assets.yuyangli.com/Academic/ICRA23_Grasp/teaser.gif",
         "Highlight": false
     }
 ]
