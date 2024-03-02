@@ -1,5 +1,6 @@
 ﻿namespace AcademicPageDotNet.Models;
 
+using System.Collections.Generic;
 using System.Text.Json;
 using AcademicPageDotNet;
 
@@ -28,14 +29,19 @@ public class PublicationItem
 
     public bool? Highlight { get; set; }
 
-    public static List<PublicationItem> GetPublicationsList(string jsonFilePath)
+    public bool? Preprint { get; set; }
+
+    public static Tuple<List<PublicationItem>, List<PublicationItem>> GetPublicationsList(string jsonFilePath)
     {
         if (!File.Exists(jsonFilePath))
         {
-            return new List<PublicationItem>();
+            return new Tuple<List<PublicationItem>, List<PublicationItem>>(new List<PublicationItem>(), new List<PublicationItem>());
         }
         string json = File.ReadAllText(jsonFilePath);
-        return JsonSerializer.Deserialize<List<PublicationItem>>(json) ?? new List<PublicationItem>();
+        List<PublicationItem> allPublicationList = JsonSerializer.Deserialize<List<PublicationItem>>(json) ?? new List<PublicationItem>();
+        List<PublicationItem> preprintList = allPublicationList.Where(pub => pub.Preprint is true).ToList();
+        List<PublicationItem> publicationList = allPublicationList.Where(pub => pub.Preprint is false).ToList();
+        return new Tuple<List<PublicationItem>, List<PublicationItem>>(preprintList, publicationList);
     }
 
     public List<AuthorLabel> GetAuthorLabels(AuthorDbContext authorDbContext)

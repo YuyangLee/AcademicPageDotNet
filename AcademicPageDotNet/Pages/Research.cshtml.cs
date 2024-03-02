@@ -9,7 +9,10 @@ namespace AcademicPageDotNet.Pages
     public class PublicationsModel : PageModel
     {
         private readonly AuthorDbContext _authorCtx;
-        public List<PublicationItem> _publicationList = new();
+        public List<PublicationItem> preprintList = new();
+        public List<PublicationItem> publicationList = new();
+        public bool hasPreprint = false;
+        public bool hasPublication = false;
 
         public PublicationsModel(AuthorDbContext authorCtx)
         {
@@ -18,7 +21,13 @@ namespace AcademicPageDotNet.Pages
 
         public void OnGet()
         {
-            _publicationList = PublicationItem.GetPublicationsList("Data/pubs.json");
+            var data = PublicationItem.GetPublicationsList("Data/pubs.json");
+
+            preprintList = data.Item1;
+            hasPreprint = (preprintList.Count > 0);
+
+            publicationList = data.Item2;
+            hasPublication = (publicationList.Count > 0);
         }
 
         public List<AuthorLabel> GetAuthorLabels(PublicationItem pub) => pub.GetAuthorLabels(_authorCtx);

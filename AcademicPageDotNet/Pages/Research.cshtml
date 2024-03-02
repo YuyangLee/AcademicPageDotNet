@@ -1,0 +1,93 @@
+﻿@page
+@using AcademicPageDotNet.Models
+@model AcademicPageDotNet.Pages.PublicationsModel
+@{
+    ViewData["Title"] = "Research";
+}
+
+<br />
+<h1>@ViewData["Title"]</h1>
+<br />
+
+@{
+    void MakePublicationCard(PublicationItem publication) {
+        <div class="card mb-3"
+             data-bs-theme="dark"
+             @if (publication.Highlight ?? false)
+             {
+                @Html.Raw("style = \"border:2px solid grey;\"")
+             }>
+            <img src="@publication.TeaserUrl" class="card-img-top" alt="teaser">
+            <div class="card-body">
+                <h4 class="card-title">
+                    @if (publication.Highlight ?? false)
+                    {
+                        @Html.Raw("&#9733;")
+                    }
+                    @publication.Title
+                </h4>
+                <p class="card-text">
+                    @*TODO: Optimize logic. (a label iff author.null is not null)*@
+                    @foreach (var author in @Model.GetAuthorLabels(publication))
+                    {
+                        @if ((author.Type & AuthorType.WebsiteOwner) != 0)
+                        {
+                            <strong><u>@author.Label</u></strong>
+                        }
+                        else
+                        {
+                            @if (author.Url == null)
+                            {
+                                <label>@author.Label</label>
+                            }
+                            else
+                            {
+                                <a href="@author.Url" target="_blank">@author.Label</a>
+                            }
+                        }
+                        if ((author.Type & AuthorType.FirstAuthor) != 0)
+                        {
+                            @Html.Raw("*")
+                        }
+                        if ((author.Type & AuthorType.CorrespondingAuthor) != 0)
+                        {
+                            @Html.Raw("&#9993;")
+                        }
+                        @Html.Raw("&nbsp;")
+                    }
+                </p>
+                <p class="card-text">@publication.Introduction</p>
+                @foreach (var link in @Model.GetExternalLabels(publication))
+                {
+                    <a href="@link.Url" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true" target="_blank"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">@link.Label</a>
+                }
+                @if (publication.Preprint ?? true)
+                {
+                    <p class="card-text"><small class="text-muted">Preprint.</small></p>
+                }
+                else
+                {
+                    <p class="card-text"><small class="text-muted">@publication.PublicationName</small></p>
+                }
+            </div>
+        </div>
+    }
+}
+
+
+<p>* equal contribution &hairsp; &#9993; corresponding author</p>
+
+@if (Model.hasPreprint)
+{
+    <h3>Preprints</h3>
+    @foreach (var publication in @Model.preprintList) MakePublicationCard(publication);
+}
+
+
+@if (Model.hasPublication)
+{
+    <h3>Publications</h3>
+    @foreach (var publication in @Model.publicationList) MakePublicationCard(publication);
+}
+

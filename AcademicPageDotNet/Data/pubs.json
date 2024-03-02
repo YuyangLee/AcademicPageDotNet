@@ -23,6 +23,7 @@
         },
         "Introduction": "We propose GenDexGrasp, a versatile dexterous grasping method that can generalize to out-of-domain robotic hands. In addition, we contribute MultiDex, a large-scale synthetic dexterous grasping dataset.",
         "TeaserUrl": "https://assets.yuyangli.com/Academic/ICRA23_Grasp/teaser.gif",
-        "Highlight": false
+        "Highlight": false,
+        "Preprint": false
     }
 ]
